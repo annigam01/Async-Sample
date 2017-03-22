@@ -50,21 +50,14 @@ namespace RestClient_Desktop
             
         }
 
-        //Step2- make a wrapper around the actual method
+        //Step2- make a task wrapper around the actual method
         private Task<string> GetDirectoryCountAsync(string CurDir)
         {
             return Task.Factory.StartNew(() => GetDirectoryCount(CurDir));
 
         }
-        
-        private int GetFileChars()
-        {
-            System.IO.StreamReader SR = System.IO.File.OpenText(@"D:\text.txt");
-            string Text = SR.ReadToEnd();
-            var Allchars = Text.ToArray<char>();
-            return Allchars.Length;
-        }
 
+        //Step 3 - mark the calling method as async and use await keyword when calling the wrapper method
         private async void button2_Click(object sender, EventArgs e)
         {
             label1.Text = "working";
